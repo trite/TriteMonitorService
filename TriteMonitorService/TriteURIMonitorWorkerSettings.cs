@@ -4,7 +4,7 @@ using System.Text;
 
 namespace TriteMonitorService
 {
-    public class TriteMonitorWorkerSettings
+    public class TriteURIMonitorWorkerSettings
     {
         public TimeSpan OffsetAmount { get; set; }
         public TimeSpan ScanDelay { get; set; }
