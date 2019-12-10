@@ -9,7 +9,101 @@
   "LogLocation": "E:\\Stuff\\temp\\tritemonitorservice\\logs\\tritemonitorlog_testing.txt",
   "ScanSettings": {
     "ScanOffsetMilliseconds": 2000,
-    "ScanDelaySeconds": 120
+    "ScanDelaySeconds": 120,
+    "URIFormat": "http://{0}/",
+    "ServerList": [
+      "google.com",
+      "yahoo.com",
+      "stackoverflow.com",
+      "godaddy.com",
+      "microsoft.com",
+      "amazon.com",
+      "slack.com",
+      "reddit.com",
+      "facebook.com",
+      "myfitnesspal.com",
+      "youtube.com",
+      "imgur.com",
+      "github.com",
+      "docker.com",
+      "influxdata.com",
+      "grafana.com",
+      "twitter.com",
+      "nuget.org",
+      "superuser.com",
+      "pluralsight.com"
+    ]
+  },
+  "Monitoring": {
+    "IMPORTANT": "This isn't implemented yet",
+    "MonitorTemplates": [
+      {
+        "TemplateName": "HomeDefault",
+        "Template": {
+          "Name": "{Name}",
+          "MonitorPing": {
+            "Enabled": true,
+            "Address": "{Name}"
+          },
+          "MonitorURI": {
+            "Enabled": true,
+            "URI": "http://{Name}/"
+          },
+          "Tags": [
+            {
+              "Name": "DC",
+              "Value": "Home"
+            }
+          ]
+        }
+      },
+      {
+        "TemplateName": "HomeCustomURI",
+        "Template": {
+          "Name": "{Name}",
+          "MonitorPing": {
+            "Enabled": true,
+            "Address": "{Name}"
+          },
+          "MonitorURI": {
+            "Enabled": true,
+            "URI": "{URI}"
+          },
+          "Tags": [
+            {
+              "Name": "DC",
+              "Value": "Home"
+            }
+          ]
+        }
+      }
+    ],
+    "Monitors": [
+      {
+        "FromTemplate": true,
+        "TemplateName": "HomeDefault",
+        "Replacements": [
+          {
+            "Key": "{Name}",
+            "Value": "google.com"
+          }
+        ]
+      },
+      {
+        "FromTemplate": true,
+        "TemplateName": "HomeCustomURI",
+        "Replacements": [
+          {
+            "Key": "{Name}",
+            "Value": "influxdata.com"
+          },
+          {
+            "Key": "{URI}",
+            "Value": "https://www.influxdata.com/"
+          }
+        ]
+      }
+    ]
   },
   "Monitors": [
     {
